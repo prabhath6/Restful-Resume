@@ -7,9 +7,11 @@ app = Flask(__name__)
 app.config['MONGO_DBNAME'] = "resume" # adding database name
 app.config["MONGO_URI"] = "mongodb://"+ os.environ["USERNAME"] + ":" + os.environ["PASSWORD"] + "@ds015995.mlab.com:15995/resume"
 
+
 mongo = PyMongo(app)
 
 @app.route("/", methods=["GET"])
+@app.route("/resume", methods=["GET"])
 def complete_resume():
     frame_work = mongo.db.my_resume
 
@@ -36,16 +38,16 @@ def get_education(param):
     elif param == "skills":
         key = "Skills"
     elif param == "experience":
-        param == "Experience" 
+        key = "Experience" 
     elif param == "projects":
-        key = "Projects":
+        key = "Projects"
     elif param == "contact":
-        param == "contact_info"
+        key = "contact_info"
     elif param == "links":
         key = "Links"
 
     for i in frame_work.find():
-        key : i[key]
+        output.append({key : i[key]})
 
     return jsonify({key : output})
 
