@@ -10,6 +10,7 @@ app.config["MONGO_URI"] = "mongodb://"+ os.environ["USERNAME"] + ":" + os.enviro
 
 # print(os.environ["USERNAME"])
 # print(os.environ["PASSWORD"])
+print(app.config["MONGO_URI"])
 
 mongo = PyMongo(app)
 
@@ -31,7 +32,5 @@ def complete_resume():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
 
 app = Flask(__name__)
