@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__)
 
-app.config['MONGO_DBNAME'] = "resume" # adding database name
+app.config['MONGO_DBNAME'] = "resume"
 app.config["MONGO_URI"] = "mongodb://"+ os.environ["USERNAME"] + ":" + os.environ["PASSWORD"] + "@ds015995.mlab.com:15995/resume"
 
 
