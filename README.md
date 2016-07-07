@@ -143,3 +143,5 @@ This restful api is deployed on heroku and the data base used is mongodb. DataBa
   ]
 }
 ```
+
+![REST API](http://2y5mo62gdufr3ganc332cx3n.wpengine.netdna-cdn.com/wp-content/uploads/REST-API-Logo.png "REST API")
