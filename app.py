@@ -4,13 +4,8 @@ import os
 
 app = Flask(__name__)
 
-
 app.config['MONGO_DBNAME'] = "resume" # adding database name
 app.config["MONGO_URI"] = "mongodb://"+ os.environ["USERNAME"] + ":" + os.environ["PASSWORD"] + "@ds015995.mlab.com:15995/resume"
-
-# print(os.environ["USERNAME"])
-# print(os.environ["PASSWORD"])
-print(app.config["MONGO_URI"])
 
 mongo = PyMongo(app)
 
@@ -24,8 +19,12 @@ def complete_resume():
 
     output = []
     for i in frame_work.find():
-        output.append({"contact" : i["contact_info"], "edu" : i["Education"], "Exp": i["Experience"],
-                       "skills" : i["Skills"], "projects" : i["Projects"], "links" : i["Links"]})
+        output.append({"contact" : i["contact_info"],
+        "edu" : i["Education"],
+        "Exp": i["Experience"],
+        "skills" : i["Skills"], 
+        "projects" : i["Projects"], 
+        "links" : i["Links"]})
 
     return jsonify({"result" : output})
 
