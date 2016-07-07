@@ -10,23 +10,44 @@ app.config["MONGO_URI"] = "mongodb://"+ os.environ["USERNAME"] + ":" + os.enviro
 mongo = PyMongo(app)
 
 @app.route("/", methods=["GET"])
-def home():
-    return "test"
-
-@app.route("/resume", methods=["GET"])
 def complete_resume():
     frame_work = mongo.db.my_resume
 
     output = []
     for i in frame_work.find():
-        output.append({"contact" : i["contact_info"],
-        "edu" : i["Education"],
-        "Exp": i["Experience"],
-        "skills" : i["Skills"], 
-        "projects" : i["Projects"], 
-        "links" : i["Links"]})
+        output.append({"Contact Information" : i["contact_info"],
+        "Education" : i["Education"],
+        "Experience": i["Experience"],
+        "Skills" : i["Skills"], 
+        "Projects" : i["Projects"], 
+        "Links" : i["Links"]})
 
-    return jsonify({"result" : output})
+    return jsonify({"Resume" : output})
+
+
+@app.route("/resume/<param>", methods=["GET"])
+def get_education(param):
+    frame_work = mongo.db.my_resume
+
+    output = []
+
+    if param == "education":
+        key = "Education"
+    elif param == "skills":
+        key = "Skills"
+    elif param == "experience":
+        param == "Experience" 
+    elif param == "projects":
+        key = "Projects":
+    elif param == "contact":
+        param == "contact_info"
+    elif param == "links":
+        key = "Links"
+
+    for i in frame_work.find():
+        key : i[key]
+
+    return jsonify({key : output})
 
 
 if __name__ == "__main__":
