@@ -18,19 +18,17 @@ mongo = PyMongo(app)
 def home():
     return "test"
 
-# @app.route("/resume", methods=["GET"])
-# def complete_resume():
-#     frame_work = mongo.db.my_resume
+@app.route("/resume", methods=["GET"])
+def complete_resume():
+    frame_work = mongo.db.my_resume
 
-#     output = []
-#     for i in frame_work.find():
-#         output.append({"contact" : i["contact_info"], "edu" : i["Education"], "Exp": i["Experience"],
-#                        "skills" : i["Skills"], "projects" : i["Projects"], "links" : i["Links"]})
+    output = []
+    for i in frame_work.find():
+        output.append({"contact" : i["contact_info"], "edu" : i["Education"], "Exp": i["Experience"],
+                       "skills" : i["Skills"], "projects" : i["Projects"], "links" : i["Links"]})
 
-#     return jsonify({"result" : output})
+    return jsonify({"result" : output})
 
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-app = Flask(__name__)
